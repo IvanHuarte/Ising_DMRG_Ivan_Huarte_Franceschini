@@ -32,7 +32,7 @@ A description of the parameters used in the model is given in the correspondient
 ### DMRG
 In this block I search the ground state for each $|\vec{B}|$ value. Also, I perform loops for different hopping values in order to see how does the critical point change, but you change it. These and other parameters are set considering a lattice size order of roughly 100 spins.
 
-In each loop, the Ising Model restarts changing the hopping and field values. Next, we initialize $|\psi_0$ which is the wavefunction that DMRG will later try to minimize. This is crucial because in these types of systems, we may start from a point where it is hard for the algorithm to minimize, due to constantly reaching local or degenerate minima. That's why I have finally chosen Neel's state or a disordered state (mode=[1,1]) to try to reach the global minimum in the first calculation. To perform the optimization in a a more efficient way, we take as input the optimized wavefunction from the last step, since the change in the parameters is small.  
+In each loop, the Ising Model restarts changing the hopping and field values. Next, we initialize $|\psi_0\rangle$ which is the wavefunction that DMRG will later try to minimize. This is crucial because in these types of systems, we may start from a point where it is hard for the algorithm to minimize, due to constantly reaching local or degenerate minima. That's why I have finally chosen Neel's state or a disordered state (mode=[1,1]) to try to reach the global minimum in the first calculation. To perform the optimization in a a more efficient way, we take as input the optimized wavefunction from the last step, since the change in the parameters is small.  
 
 On the other hand, in this task I have learned that DMRG has more difficulties to converge for $L$ small (0-70) than larger ones. I guess the symmetry breaking that originates the 2 potential wells are less prominent at these sizes and DMRG just doesn't know where the minimum is, or maybe (more probable) I'm doing something wrong. It turns out that in the opposite case, the DMRG's behaviour is really different. When symmetry breaking takes place,i.e., the state with +Z magnetization has the same energy than the state with -Z, for large enough $L$ and little enough bond dimension $\chi$, DMRG tends to choose one of both states since preserve superposition leads to a harder truncation.
 
@@ -70,7 +70,7 @@ The DMRG takes the hamiltonian and the initial wavefunction and sweeps along the
 
 In each local optimisation, the MPS site is not fully optimised, but only a little, to prevent the algorithm from convoluting the MPS.
 
-At the end of the optimization, if everything is fine $|\psi\rangle=|\psi_{gr}\rangle$ and the energy is computed $E_{gr]=\langle\psi_{gr]|H|\psi_{gr}\rangle$
+At the end of the optimization, if everything is fine $|\psi\rangle=|\psi_{gr}\rangle$ and the energy is computed $E_{gr}=\langle\psi_{gr}|H|\psi_{gr}\rangle$
 
 ## Exercise 3
 **Discuss which parts of the code could potentially be accelerated using quantum
